@@ -716,47 +716,185 @@ public:
 
 void loadDemo(VectorDB& db) {
     auto dist = getDistFn("cosine");
-    // Dims 0-3: CS | Dims 4-7: Math | Dims 8-11: Food | Dims 12-15: Sports
-    db.insert("Linked List: nodes connected by pointers", "cs",
-        {0.90f,0.85f,0.72f,0.68f,0.12f,0.08f,0.15f,0.10f,0.05f,0.08f,0.06f,0.09f,0.07f,0.11f,0.08f,0.06f}, dist);
-    db.insert("Binary Search Tree: O(log n) search and insert", "cs",
-        {0.88f,0.82f,0.78f,0.74f,0.15f,0.10f,0.08f,0.12f,0.06f,0.07f,0.08f,0.05f,0.09f,0.06f,0.07f,0.10f}, dist);
-    db.insert("Dynamic Programming: memoization overlapping subproblems", "cs",
-        {0.82f,0.76f,0.88f,0.80f,0.20f,0.18f,0.12f,0.09f,0.07f,0.06f,0.08f,0.07f,0.08f,0.09f,0.06f,0.07f}, dist);
-    db.insert("Graph BFS and DFS: breadth and depth first traversal", "cs",
-        {0.85f,0.80f,0.75f,0.82f,0.18f,0.14f,0.10f,0.08f,0.06f,0.09f,0.07f,0.06f,0.10f,0.08f,0.09f,0.07f}, dist);
-    db.insert("Hash Table: O(1) lookup with collision chaining", "cs",
-        {0.87f,0.78f,0.70f,0.76f,0.13f,0.11f,0.09f,0.14f,0.08f,0.07f,0.06f,0.08f,0.07f,0.10f,0.08f,0.09f}, dist);
-    db.insert("Calculus: derivatives integrals and limits", "math",
-        {0.12f,0.15f,0.18f,0.10f,0.91f,0.86f,0.78f,0.72f,0.08f,0.06f,0.07f,0.09f,0.07f,0.08f,0.06f,0.10f}, dist);
-    db.insert("Linear Algebra: matrices eigenvalues eigenvectors", "math",
-        {0.20f,0.18f,0.15f,0.12f,0.88f,0.90f,0.82f,0.76f,0.09f,0.07f,0.08f,0.06f,0.10f,0.07f,0.08f,0.09f}, dist);
-    db.insert("Probability: distributions random variables Bayes theorem", "math",
-        {0.15f,0.12f,0.20f,0.18f,0.84f,0.80f,0.88f,0.82f,0.07f,0.08f,0.06f,0.10f,0.09f,0.06f,0.09f,0.08f}, dist);
-    db.insert("Number Theory: primes modular arithmetic RSA cryptography", "math",
-        {0.22f,0.16f,0.14f,0.20f,0.80f,0.85f,0.76f,0.90f,0.08f,0.09f,0.07f,0.06f,0.08f,0.10f,0.07f,0.06f}, dist);
-    db.insert("Combinatorics: permutations combinations generating functions", "math",
-        {0.18f,0.20f,0.16f,0.14f,0.86f,0.78f,0.84f,0.80f,0.06f,0.07f,0.09f,0.08f,0.06f,0.09f,0.10f,0.07f}, dist);
-    db.insert("Neapolitan Pizza: wood-fired dough San Marzano tomatoes", "food",
-        {0.08f,0.06f,0.09f,0.07f,0.07f,0.08f,0.06f,0.09f,0.90f,0.86f,0.78f,0.72f,0.08f,0.06f,0.09f,0.07f}, dist);
-    db.insert("Sushi: vinegared rice raw fish and nori rolls", "food",
-        {0.06f,0.08f,0.07f,0.09f,0.09f,0.06f,0.08f,0.07f,0.86f,0.90f,0.82f,0.76f,0.07f,0.09f,0.06f,0.08f}, dist);
-    db.insert("Ramen: noodle soup with chashu pork and soft-boiled eggs", "food",
-        {0.09f,0.07f,0.06f,0.08f,0.08f,0.09f,0.07f,0.06f,0.82f,0.78f,0.90f,0.84f,0.09f,0.07f,0.08f,0.06f}, dist);
-    db.insert("Tacos: corn tortillas with carnitas salsa and cilantro", "food",
-        {0.07f,0.09f,0.08f,0.06f,0.06f,0.07f,0.09f,0.08f,0.78f,0.82f,0.86f,0.90f,0.06f,0.08f,0.07f,0.09f}, dist);
-    db.insert("Croissant: laminated pastry with buttery flaky layers", "food",
-        {0.06f,0.07f,0.10f,0.09f,0.10f,0.06f,0.07f,0.10f,0.85f,0.80f,0.76f,0.82f,0.09f,0.07f,0.10f,0.06f}, dist);
-    db.insert("Basketball: fast-paced shooting dribbling slam dunks", "sports",
-        {0.09f,0.07f,0.08f,0.10f,0.08f,0.09f,0.07f,0.06f,0.08f,0.07f,0.09f,0.06f,0.91f,0.85f,0.78f,0.72f}, dist);
-    db.insert("Football: tackles touchdowns field goals and strategy", "sports",
-        {0.07f,0.09f,0.06f,0.08f,0.09f,0.07f,0.10f,0.08f,0.07f,0.09f,0.08f,0.07f,0.87f,0.89f,0.82f,0.76f}, dist);
-    db.insert("Tennis: racket volleys groundstrokes and Wimbledon serves", "sports",
-        {0.08f,0.06f,0.09f,0.07f,0.07f,0.08f,0.06f,0.09f,0.09f,0.06f,0.07f,0.08f,0.83f,0.80f,0.88f,0.82f}, dist);
-    db.insert("Chess: openings endgames tactics strategic board game", "sports",
-        {0.25f,0.20f,0.22f,0.18f,0.22f,0.18f,0.20f,0.15f,0.06f,0.08f,0.07f,0.09f,0.80f,0.84f,0.78f,0.90f}, dist);
-    db.insert("Swimming: butterfly freestyle backstroke Olympic competition", "sports",
-        {0.06f,0.08f,0.07f,0.09f,0.08f,0.06f,0.09f,0.07f,0.10f,0.08f,0.06f,0.07f,0.85f,0.82f,0.86f,0.80f}, dist);
+
+    // ================================================================
+    // PIYUSH AI KNOWLEDGE BASE
+    // 16D semantic demo vectors
+    //
+    // Internal categories:
+    // cs     -> DSA & Algorithms
+    // math   -> Machine Learning
+    // food   -> Projects
+    // sports -> Education & Skills
+    // ================================================================
+
+    // ---------------- DSA & ALGORITHMS ----------------
+
+    db.insert(
+        "DSA: Arrays, Strings and basic problem-solving patterns",
+        "cs",
+        {0.92f,0.86f,0.80f,0.74f,0.10f,0.08f,0.12f,0.09f,
+         0.05f,0.07f,0.06f,0.08f,0.06f,0.09f,0.07f,0.05f},
+        dist
+    );
+
+    db.insert(
+        "DSA: Sliding Window and Two Pointer techniques",
+        "cs",
+        {0.90f,0.88f,0.82f,0.78f,0.11f,0.09f,0.10f,0.08f,
+         0.06f,0.07f,0.05f,0.08f,0.07f,0.06f,0.08f,0.05f},
+        dist
+    );
+
+    db.insert(
+        "DSA: Binary Search, sorting and time complexity",
+        "cs",
+        {0.88f,0.91f,0.76f,0.82f,0.12f,0.10f,0.08f,0.11f,
+         0.06f,0.05f,0.08f,0.07f,0.09f,0.06f,0.07f,0.08f},
+        dist
+    );
+
+    db.insert(
+        "DSA: Trees, Binary Search Trees and recursion",
+        "cs",
+        {0.86f,0.84f,0.92f,0.80f,0.09f,0.12f,0.10f,0.08f,
+         0.05f,0.07f,0.06f,0.09f,0.08f,0.07f,0.06f,0.08f},
+        dist
+    );
+
+    db.insert(
+        "DSA: Graph BFS, DFS and traversal algorithms",
+        "cs",
+        {0.84f,0.88f,0.86f,0.92f,0.10f,0.08f,0.11f,0.07f,
+         0.06f,0.08f,0.05f,0.07f,0.09f,0.06f,0.08f,0.07f},
+        dist
+    );
+
+    // ---------------- MACHINE LEARNING ----------------
+
+    db.insert(
+        "Machine Learning: supervised and unsupervised learning",
+        "math",
+        {0.10f,0.08f,0.12f,0.09f,0.92f,0.86f,0.80f,0.76f,
+         0.07f,0.06f,0.08f,0.05f,0.06f,0.08f,0.07f,0.09f},
+        dist
+    );
+
+    db.insert(
+        "Machine Learning: regression and classification models",
+        "math",
+        {0.11f,0.09f,0.10f,0.08f,0.90f,0.91f,0.82f,0.78f,
+         0.06f,0.08f,0.07f,0.05f,0.09f,0.06f,0.07f,0.08f},
+        dist
+    );
+
+    db.insert(
+        "Machine Learning: feature engineering and preprocessing",
+        "math",
+        {0.09f,0.12f,0.08f,0.10f,0.86f,0.90f,0.88f,0.80f,
+         0.07f,0.06f,0.05f,0.08f,0.06f,0.09f,0.08f,0.07f},
+        dist
+    );
+
+    db.insert(
+        "Python for ML: NumPy, Pandas and data analysis",
+        "math",
+        {0.12f,0.09f,0.11f,0.08f,0.88f,0.84f,0.92f,0.76f,
+         0.06f,0.07f,0.08f,0.05f,0.07f,0.08f,0.06f,0.09f},
+        dist
+    );
+
+    db.insert(
+        "AI and ML: embeddings, NLP and semantic search",
+        "math",
+        {0.10f,0.11f,0.09f,0.12f,0.84f,0.88f,0.86f,0.93f,
+         0.05f,0.07f,0.06f,0.08f,0.08f,0.06f,0.09f,0.07f},
+        dist
+    );
+
+    // ---------------- PROJECTS ----------------
+
+    db.insert(
+        "Airbnb Clone: Ruby on Rails, PostgreSQL and full-stack development",
+        "food",
+        {0.08f,0.10f,0.09f,0.07f,0.06f,0.08f,0.07f,0.09f,
+         0.92f,0.86f,0.80f,0.74f,0.08f,0.06f,0.09f,0.07f},
+        dist
+    );
+
+    db.insert(
+        "Real-Time IDS: MERN based internal data monitoring system",
+        "food",
+        {0.09f,0.07f,0.10f,0.08f,0.06f,0.09f,0.07f,0.08f,
+         0.88f,0.91f,0.82f,0.78f,0.06f,0.08f,0.07f,0.09f},
+        dist
+    );
+
+    db.insert(
+        "Deep Packet Inspection Engine for network traffic analysis",
+        "food",
+        {0.08f,0.09f,0.07f,0.10f,0.08f,0.06f,0.09f,0.07f,
+         0.86f,0.84f,0.92f,0.80f,0.07f,0.09f,0.06f,0.08f},
+        dist
+    );
+
+    db.insert(
+        "SQL Retail Sales Analysis: queries, insights and business reporting",
+        "food",
+        {0.10f,0.08f,0.09f,0.07f,0.07f,0.09f,0.06f,0.08f,
+         0.84f,0.89f,0.86f,0.93f,0.08f,0.06f,0.07f,0.09f},
+        dist
+    );
+
+    db.insert(
+        "AI Vector Database: HNSW, KD-Tree, embeddings and RAG",
+        "food",
+        {0.09f,0.11f,0.08f,0.10f,0.07f,0.09f,0.06f,0.08f,
+         0.90f,0.87f,0.94f,0.84f,0.06f,0.08f,0.07f,0.09f},
+        dist
+    );
+
+    // ---------------- EDUCATION & SKILLS ----------------
+
+    db.insert(
+        "B.Tech Computer Science Engineering and core CS subjects",
+        "sports",
+        {0.07f,0.09f,0.08f,0.10f,0.06f,0.08f,0.09f,0.07f,
+         0.08f,0.06f,0.07f,0.09f,0.92f,0.86f,0.80f,0.76f},
+        dist
+    );
+
+    db.insert(
+        "Programming Skills: C++, Python, JavaScript and Ruby",
+        "sports",
+        {0.08f,0.07f,0.10f,0.09f,0.08f,0.06f,0.09f,0.07f,
+         0.06f,0.08f,0.07f,0.09f,0.88f,0.91f,0.82f,0.78f},
+        dist
+    );
+
+    db.insert(
+        "Web Development: React, Node.js, MongoDB and Ruby on Rails",
+        "sports",
+        {0.09f,0.08f,0.07f,0.10f,0.06f,0.09f,0.08f,0.07f,
+         0.08f,0.06f,0.09f,0.07f,0.86f,0.84f,0.92f,0.80f},
+        dist
+    );
+
+    db.insert(
+        "Database Skills: SQL, PostgreSQL, MongoDB and database design",
+        "sports",
+        {0.07f,0.10f,0.08f,0.09f,0.08f,0.07f,0.06f,0.10f,
+         0.07f,0.09f,0.06f,0.08f,0.84f,0.89f,0.86f,0.93f},
+        dist
+    );
+
+    db.insert(
+        "Career Preparation: DSA, SQL, ML, projects and technical interviews",
+        "sports",
+        {0.10f,0.08f,0.09f,0.07f,0.08f,0.10f,0.07f,0.09f,
+         0.06f,0.08f,0.07f,0.09f,0.90f,0.87f,0.85f,0.92f},
+        dist
+    );
 }
 
 // =====================================================================
@@ -774,7 +912,8 @@ int main() {
     bool ollamaUp = ollama.isAvailable();
     std::cout << "=== VectorDB Engine ===" << std::endl;
     std::cout << "http://localhost:8080" << std::endl;
-    std::cout << db.size() << " demo vectors | " << DIMS << " dims | HNSW+KD-Tree+BruteForce" << std::endl;
+   std::cout << db.size() << " personal knowledge vectors | "
+          << DIMS << " dims | HNSW+KD-Tree+BruteForce" << std::endl;
     std::cout << "Ollama: " << (ollamaUp ? "ONLINE" : "OFFLINE (install from ollama.com)") << std::endl;
     if (ollamaUp) std::cout << "  embed model: " << ollama.embedModel
                             << "  gen model: "   << ollama.genModel << std::endl;
